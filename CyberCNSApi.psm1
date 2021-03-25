@@ -3,7 +3,11 @@ $CyberCNSApiSession = @{
     Session = $null
 }
 
-$Functions = @(Get-ChildItem -Path $PSScriptRoot\public\*.ps1 -ErrorAction SilentlyContinue) + @(Get-ChildItem -Path $PSScriptRoot\private\*.ps1 -ErrorAction SilentlyContinue)
+$Functions = @(
+    Get-ChildItem -Path $PSScriptRoot\public\*.ps1 -ErrorAction SilentlyContinue
+) + @(
+    Get-ChildItem -Path $PSScriptRoot\private\*.ps1 -ErrorAction SilentlyContinue
+)
 foreach ($import in @($Functions)) {
     try {
         . $import.FullName
