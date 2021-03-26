@@ -54,5 +54,13 @@ function Get-CyberCNSQuery {
         }
     }
 
+    if($Family -Contains "vulnerability") {
+        $query.query.bool.must += @{
+            "match" = @{
+                "vulnerabilitystatus.keyword" = "Open"
+            }
+        }
+    }
+
     return $query
 }
